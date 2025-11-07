@@ -29,7 +29,9 @@
                         position="0 1.5 0"
                         width="1"
                         height="1"
-                        look-at="[camera]"></a-image>
+                        look-at="[camera]">
+                    </a-image>
+                    <a-sound id="earthGuardianAudio" src="url(assets/earth/earth-guardian-theme.mp3)"></a-sound>
                 </a-entity>
             </a-marker>
 
@@ -115,11 +117,6 @@
         </a-scene>
 
         <!-- HTML audio element for the guardian's theme music -->
-        <audio id="earthGuardianAudio" src="assets/earth/earth-guardian-theme.mp3"></audio>
-        <audio id="waterGuardianAudio" src="assets/water/water-guardian-theme.mp3"></audio>
-        <audio id="fireGuardianAudio" src="assets/fire/fire-guardian-theme.mp3"></audio>
-        <audio id="airGuardianAudio" src="assets/air/air-guardian-theme.mp3"></audio>
-        <audio id="koppieAudio" src="assets/koppie/spirit-of-the-koppie-theme.mp3"></audio>
 
         <script>
             // Wait for the A-Frame scene to finish loading
