@@ -24,7 +24,7 @@
                     class="clickable">
                     <!-- "Tap to Start" prompt -->
                     <a-image
-                        id="tapToStart"
+                        id="tapToStart1"
                         src="assets/tap-to-start.svg"
                         position="0 1.5 0"
                         width="1"
@@ -36,11 +36,19 @@
             <a-marker preset="kanji">
                 <a-entity rotation="-90 0 0">
                     <a-entity
-                        id="mymodel"
+                        id="waterRunestone"
                         gltf-model="assets/water/water-runestone.glb"
                         rotation="0 -90 0"
                         scale="1 1 1"
                         class="clickable">
+                        <!-- "Tap to Start" prompt -->
+                        <a-image
+                            id="tapToStart2"
+                            src="assets/tap-to-start.svg"
+                            position="0 1.5 0"
+                            width="1"
+                            height="1"
+                            look-at="[camera]"></a-image>
                     </a-entity>
                 </a-entity>
             </a-marker>
@@ -48,11 +56,19 @@
             <a-marker type="pattern" url="assets/patterns/triangle-pattern.patt">
                 <a-entity rotation="-90 0 0">
                     <a-entity
-                        id="mymodel"
+                        id="fireRunestone"
                         gltf-model="assets/fire/fire-runestone.glb"
                         rotation="0 90 0"
                         scale="1 1 1"
                         class="clickable">
+                        <!-- "Tap to Start" prompt -->
+                        <a-image
+                            id="tapToStart3"
+                            src="assets/tap-to-start.svg"
+                            position="0 1.5 0"
+                            width="1"
+                            height="1"
+                            look-at="[camera]"></a-image>
                     </a-entity>
                 </a-entity>
             </a-marker>
@@ -60,22 +76,38 @@
             <a-marker type="pattern" url="assets/patterns/star-pattern.patt">
                 <a-entity rotation="-90 0 0">
                     <a-entity
-                        id="mymodel"
+                        id="airRunestone"
                         gltf-model="assets/air/air-runestone.glb"
                         rotation="0 -90 0"
                         scale="1 1 1"
                         class="clickable">
+                        <!-- "Tap to Start" prompt -->
+                        <a-image
+                            id="tapToStart4"
+                            src="assets/tap-to-start.svg"
+                            position="0 1.5 0"
+                            width="1"
+                            height="1"
+                            look-at="[camera]"></a-image>
                     </a-entity>
                 </a-entity>
             </a-marker>
 
             <a-marker type="pattern" url="assets/patterns/l-pattern.patt">
                 <a-entity
-                    id="mymodel"
+                    id="koppieOrb"
                     gltf-model="assets/koppie/spirit-of-the-koppie-orb.glb"
                     rotation="-90 0 0"
                     scale="1 1 1"
                     class="clickable">
+                    <!-- "Tap to Start" prompt -->
+                    <a-image
+                        id="tapToStart5"
+                        src="assets/tap-to-start.svg"
+                        position="0 1.5 0"
+                        width="1"
+                        height="1"
+                        look-at="[camera]"></a-image>
                 </a-entity>
             </a-marker>
 
@@ -93,22 +125,98 @@
             // Wait for the A-Frame scene to finish loading
             document.querySelector("a-scene").addEventListener("loaded", function () {
                 // Get references to the model, tap image, and audio elements
-                const model = document.querySelector("#earthRunestone");
-                const tapImage = model.querySelector("#tapToStart");
-                const sound = document.querySelector("#earthGuardianAudio");
+                const earthRunestone = document.querySelector("#earthRunestone");
+                const earthTapImage = model.querySelector("#tapToStart1");
+                const earthSound = document.querySelector("#earthGuardianAudio");
+
+                // Get references to the model, tap image, and audio elements
+                const waterRunestone = document.querySelector("#waterRunestone");
+                const waterTapImage = model.querySelector("#tapToStart2");
+                const waterSound = document.querySelector("#waterGuardianAudio");
+
+                // Get references to the model, tap image, and audio elements
+                const fireRunestone = document.querySelector("#fireRunestone");
+                const fireTapImage = model.querySelector("#tapToStart3");
+                const fireSound = document.querySelector("#fireGuardianAudio");
+
+                // Get references to the model, tap image, and audio elements
+                const airRunestone = document.querySelector("#airRunestone");
+                const airTapImage = model.querySelector("#tapToStart4");
+                const airSound = document.querySelector("#airGuardianAudio");
+
+                // Get references to the model, tap image, and audio elements
+                const koppieOrb = document.querySelector("#koppieOrb");
+                const koppieTapImage = model.querySelector("#tapToStart5");
+                const koppieSound = document.querySelector("#koppieAudio");
 
                 // Add a click event listener to the model
-                model.addEventListener("click", (e) => {
+                earthRunestone.addEventListener("click", (e) => {
                     // Swap the runestone model with the guardian model
-                    model.setAttribute("gltf-model", "assets/earth/earth-guardian.glb");
-                    model.setAttribute("scale", "3 3 3");
-                    model.setAttribute("animation-mixer", "");
+                    earthRunestone.setAttribute("gltf-model", "assets/earth/earth-guardian.glb");
+                    earthRunestone.setAttribute("scale", "3 3 3");
+                    earthRunestone.setAttribute("animation-mixer", "");
 
                     // Hide the "Tap to Start" prompt
-                    tapImage.setAttribute("visible", "false");
+                    earthTapImage.setAttribute("visible", "false");
 
                     // Play the guardian's theme music
-                    sound.play();
+                    earthSound.play();
+                });
+
+                // Add a click event listener to the model
+                waterRunestone.addEventListener("click", (e) => {
+                    // Swap the runestone model with the guardian model
+                    waterRunestone.setAttribute("gltf-model", "assets/water/water-guardian.glb");
+                    waterRunestone.setAttribute("scale", "3 3 3");
+                    waterRunestone.setAttribute("animation-mixer", "");
+
+                    // Hide the "Tap to Start" prompt
+                    waterTapImage.setAttribute("visible", "false");
+
+                    // Play the guardian's theme music
+                    waterSound.play();
+                });
+
+                // Add a click event listener to the model
+                fireRunestone.addEventListener("click", (e) => {
+                    // Swap the runestone model with the guardian model
+                    fireRunestone.setAttribute("gltf-model", "assets/fire/fire-guardian.glb");
+                    fireRunestone.setAttribute("scale", "3 3 3");
+                    fireRunestone.setAttribute("animation-mixer", "");
+
+                    // Hide the "Tap to Start" prompt
+                    fireTapImage.setAttribute("visible", "false");
+
+                    // Play the guardian's theme music
+                    fireSound.play();
+                });
+
+                // Add a click event listener to the model
+                airRunestone.addEventListener("click", (e) => {
+                    // Swap the runestone model with the guardian model
+                    airRunestone.setAttribute("gltf-model", "assets/air/air-guardian.glb");
+                    airRunestone.setAttribute("scale", "3 3 3");
+                    airRunestone.setAttribute("animation-mixer", "");
+
+                    // Hide the "Tap to Start" prompt
+                    airTapImage.setAttribute("visible", "false");
+
+                    // Play the guardian's theme music
+                    airSound.play();
+                });
+
+                // Add a click event listener to the model
+                koppieOrb.addEventListener("click", (e) => {
+                    // Swap the runestone model with the guardian model
+                    koppieOrb.setAttribute("gltf-model", "assets/koppie/spirit-of-the-koppie.glb");
+                    koppieOrb.setAttribute("scale", "3 3 3");
+                    koppieOrb.setAttribute("animation-mixer", "");
+
+                    // Hide the "Tap to Start" prompt
+                    koppieTapImage.setAttribute("visible", "false");
+
+                    // Play the guardian's theme music
+                    koppieSound.play();
                 });
             });
         </script>
