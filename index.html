@@ -29,9 +29,7 @@
                         position="0 1.5 0"
                         width="1"
                         height="1"
-                        look-at="[camera]">
-                    </a-image>
-                    <a-sound id="earthGuardianAudio" src="assets/earth/earth-guardian-theme.mp3"></a-sound>
+                        look-at="[camera]"></a-image>
                 </a-entity>
             </a-marker>
 
@@ -117,8 +115,47 @@
         </a-scene>
 
         <!-- HTML audio element for the guardian's theme music -->
+        <audio
+            id="earthGuardianAudio"
+            src="assets/earth/earth-guardian-theme.mp3"
+            preload="auto"
+            crossorigin="anonymous"></audio>
+        <audio
+            id="waterGuardianAudio"
+            src="assets/water/water-guardian-theme.mp3"
+            preload="auto"
+            crossorigin="anonymous"></audio>
+        <audio
+            id="fireGuardianAudio"
+            src="assets/fire/fire-guardian-theme.mp3"
+            preload="auto"
+            crossorigin="anonymous"></audio>
+        <audio id="airGuardianAudio" src="assets/air/air-guardian-theme.mp3" preload="auto" crossorigin="anonymous"></audio>
+        <audio
+            id="koppieAudio"
+            src="assets/koppie/spirit-of-the-koppie-theme.mp3"
+            preload="auto"
+            crossorigin="anonymous"></audio>
 
         <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Unlock audio context
+                const audios = document.querySelectorAll("audio");
+
+                function unlockAudio() {
+                    audios.forEach((a) => {
+                        a.play()
+                            .then(() => a.pause())
+                            .catch(() => {});
+                    });
+                    document.removeEventListener("click", unlockAudio);
+                    document.removeEventListener("touchstart", unlockAudio);
+                    console.log("🔓 Audio context unlocked!");
+                }
+
+                document.addEventListener("click", unlockAudio);
+                document.addEventListener("touchstart", unlockAudio);
+            });
             // Wait for the A-Frame scene to finish loading
             document.querySelector("a-scene").addEventListener("loaded", function () {
                 // Get references to the model, tap image, and audio elements
