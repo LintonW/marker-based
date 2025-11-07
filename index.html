@@ -122,101 +122,74 @@
         <audio id="koppieAudio" src="assets/koppie/spirit-of-the-koppie-theme.mp3" preload="auto"></audio>
 
         <script>
-            // Wait for the A-Frame scene to finish loading
             document.querySelector("a-scene").addEventListener("loaded", function () {
-                // Get references to the model, tap image, and audio elements
-                const earthRunestone = document.querySelector("#earthRunestone");
-                const earthTapImage = earthRunestone.querySelector("#tapToStart1");
-                const earthSound = document.querySelector("#earthGuardianAudio");
+                // Define all our marker/model setups in one array
+                // This makes it easy to add or remove items without copying/pasting huge blocks of code
+                const setups = [
+                    {
+                        runestoneId: "#earthRunestone",
+                        tapImageId: "#tapToStart1",
+                        audioId: "#earthGuardianAudio",
+                        guardianModel: "assets/earth/earth-guardian.glb",
+                    },
+                    {
+                        runestoneId: "#waterRunestone",
+                        tapImageId: "#tapToStart2",
+                        audioId: "#waterGuardianAudio",
+                        guardianModel: "assets/water/water-guardian.glb",
+                    },
+                    {
+                        runestoneId: "#fireRunestone",
+                        tapImageId: "#tapToStart3",
+                        audioId: "#fireGuardianAudio",
+                        guardianModel: "assets/fire/fire-guardian.glb",
+                    },
+                    {
+                        runestoneId: "#airRunestone",
+                        tapImageId: "#tapToStart4",
+                        audioId: "#airGuardianAudio",
+                        guardianModel: "assets/air/air-guardian.glb",
+                    },
+                    {
+                        runestoneId: "#koppieOrb",
+                        tapImageId: "#tapToStart5",
+                        audioId: "#koppieAudio",
+                        guardianModel: "assets/koppie/spirit-of-the-koppie.glb",
+                    },
+                ];
 
-                // Get references to the model, tap image, and audio elements
-                const waterRunestone = document.querySelector("#waterRunestone");
-                const waterTapImage = waterRunestone.querySelector("#tapToStart2");
-                const waterSound = document.querySelector("#waterGuardianAudio");
+                // Loop through each setup and apply all our logic
+                setups.forEach((setup) => {
+                    const runestone = document.querySelector(setup.runestoneId);
+                    if (!runestone) {
+                        console.error("Could not find runestone:", setup.runestoneId);
+                        return; // Skip this one if not found
+                    }
 
-                // Get references to the model, tap image, and audio elements
-                const fireRunestone = document.querySelector("#fireRunestone");
-                const fireTapImage = fireRunestone.querySelector("#tapToStart3");
-                const fireSound = document.querySelector("#fireGuardianAudio");
+                    const tapImage = runestone.querySelector(setup.tapImageId);
+                    const sound = document.querySelector(setup.audioId);
+                    // This is the important part: we find the <a-marker> that contains this runestone
+                    const marker = runestone.closest("a-marker");
 
-                // Get references to the model, tap image, and audio elements
-                const airRunestone = document.querySelector("#airRunestone");
-                const airTapImage = airRunestone.querySelector("#tapToStart4");
-                const airSound = document.querySelector("#airGuardianAudio");
+                    if (!tapImage || !sound || !marker) {
+                        console.error("Missing parts for:", setup.runestoneId);
+                        return; // Skip if parts are missing
+                    }
 
-                // Get references to the model, tap image, and audio elements
-                const koppieOrb = document.querySelector("#koppieOrb");
-                const koppieTapImage = koppieOrb.querySelector("#tapToStart5");
-                const koppieSound = document.querySelector("#koppieAudio");
+                    // 1. Your original click listener
+                    runestone.addEventListener("click", (e) => {
+                        runestone.setAttribute("gltf-model", setup.guardianModel);
+                        runestone.setAttribute("scale", "3 3 3");
+                        runestone.setAttribute("animation-mixer", "");
+                        tapImage.setAttribute("visible", "false");
+                        sound.play();
+                    });
 
-                // Add a click event listener to the model
-                earthRunestone.addEventListener("click", (e) => {
-                    // Swap the runestone model with the guardian model
-                    earthRunestone.setAttribute("gltf-model", "assets/earth/earth-guardian.glb");
-                    earthRunestone.setAttribute("scale", "3 3 3");
-                    earthRunestone.setAttribute("animation-mixer", "");
-
-                    // Hide the "Tap to Start" prompt
-                    earthTapImage.setAttribute("visible", "false");
-
-                    // Play the guardian's theme music
-                    earthSound.play();
-                });
-
-                // Add a click event listener to the model
-                waterRunestone.addEventListener("click", (e) => {
-                    // Swap the runestone model with the guardian model
-                    waterRunestone.setAttribute("gltf-model", "assets/water/water-guardian.glb");
-                    waterRunestone.setAttribute("scale", "3 3 3");
-                    waterRunestone.setAttribute("animation-mixer", "");
-
-                    // Hide the "Tap to Start" prompt
-                    waterTapImage.setAttribute("visible", "false");
-
-                    // Play the guardian's theme music
-                    waterSound.play();
-                });
-
-                // Add a click event listener to the model
-                fireRunestone.addEventListener("click", (e) => {
-                    // Swap the runestone model with the guardian model
-                    fireRunestone.setAttribute("gltf-model", "assets/fire/fire-guardian.glb");
-                    fireRunestone.setAttribute("scale", "3 3 3");
-                    fireRunestone.setAttribute("animation-mixer", "");
-
-                    // Hide the "Tap to Start" prompt
-                    fireTapImage.setAttribute("visible", "false");
-
-                    // Play the guardian's theme music
-                    fireSound.play();
-                });
-
-                // Add a click event listener to the model
-                airRunestone.addEventListener("click", (e) => {
-                    // Swap the runestone model with the guardian model
-                    airRunestone.setAttribute("gltf-model", "assets/air/air-guardian.glb");
-                    airRunestone.setAttribute("scale", "3 3 3");
-                    airRunestone.setAttribute("animation-mixer", "");
-
-                    // Hide the "Tap to Start" prompt
-                    airTapImage.setAttribute("visible", "false");
-
-                    // Play the guardian's theme music
-                    airSound.play();
-                });
-
-                // Add a click event listener to the model
-                koppieOrb.addEventListener("click", (e) => {
-                    // Swap the runestone model with the guardian model
-                    koppieOrb.setAttribute("gltf-model", "assets/koppie/spirit-of-the-koppie.glb");
-                    koppieOrb.setAttribute("scale", "3 3 3");
-                    koppieOrb.setAttribute("animation-mixer", "");
-
-                    // Hide the "Tap to Start" prompt
-                    koppieTapImage.setAttribute("visible", "false");
-
-                    // Play the guardian's theme music
-                    koppieSound.play();
+                    // 2. **THE FIX:** The new listener for when the marker is lost
+                    marker.addEventListener("markerLost", () => {
+                        sound.pause();
+                        sound.currentTime = 0; // Reset sound to the beginning
+                    });
                 });
             });
         </script>
