@@ -9,14 +9,55 @@
 
         <!-- Load AR.js library for A-Frame -->
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+        <!-- Look-at component -->
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     </head>
     <body>
         <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
             <a-marker preset="hiro">
-                <a-entity id="mymodel" gltf-model="url(earth-guardian.glb)" rotation="-90 0 0" scale="5 5 5"> </a-entity>
+                <a-entity
+                    id="mymodel"
+                    gltf-model="url(earth-runestone.glb)"
+                    rotation="-90 0 0"
+                    scale="1 1 1"
+                    class="clickable">
+                    <!-- "Tap to Start" prompt -->
+                    <a-image
+                        id="tapToStart"
+                        src="tap-to-start.svg"
+                        position="0 1.5 0"
+                        width="1"
+                        height="1"
+                        look-at="[camera]"></a-image>
+                </a-entity>
             </a-marker>
 
-            <a-entity camera></a-entity>
+            <a-entity camera cursor="fuse: false; rayOrigin: mouse" raycaster="objects: .clickable"></a-entity>
         </a-scene>
+
+        <!-- HTML audio element for the guardian's theme music -->
+        <audio id="guardianAudio" src="earth-guardian-theme.mp3" preload="auto"></audio>
+
+        <script>
+            // Get references to the model, tap image, and audio elements
+            const model = document.querySelector("#mymodel");
+            const tapImage = model.querySelector("#tapToStart");
+            const sound = document.querySelector("#guardianAudio");
+
+            // Add a click event listener to the model
+            model.addEventListener("click", (e) => {
+                // Swap the runestone model with the guardian model
+                model.setAttribute("gltf-model", "./Assets/earth-guardian.glb");
+                model.setAttribute("scale", "3 3 3");
+                model.setAttribute("animation-mixer", "");
+
+                // Hide the "Tap to Start" prompt
+                tapImage.setAttribute("visible", "false");
+
+                // Play the guardian's theme music
+                sound.play();
+            });
+        </script>
     </body>
 </html>
