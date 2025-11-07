@@ -13,11 +13,7 @@
     <body>
         <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
             <a-marker preset="hiro">
-                <a-box
-                    position="0 0.5 0"
-                    material="color: red;"
-                    animation="property: rotation; to: 0 360 0; loop: true; dur: 4000; easing: linear;">
-                </a-box>
+                <a-entity id="mymodel" gltf-model="/earth-guardian.glb" rotation="0 0 0" scale="2 2 2"> </a-entity>
             </a-marker>
 
             <a-entity camera></a-entity>
