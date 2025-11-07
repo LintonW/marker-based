@@ -115,11 +115,11 @@
         </a-scene>
 
         <!-- HTML audio element for the guardian's theme music -->
-        <audio id="earthGuardianAudio" src="assets/earth/earth-guardian-theme.mp3" preload="auto"></audio>
-        <audio id="waterGuardianAudio" src="assets/water/water-guardian-theme.mp3" preload="auto"></audio>
-        <audio id="fireGuardianAudio" src="assets/fire/fire-guardian-theme.mp3" preload="auto"></audio>
-        <audio id="airGuardianAudio" src="assets/air/air-guardian-theme.mp3" preload="auto"></audio>
-        <audio id="koppieAudio" src="assets/koppie/spirit-of-the-koppie-theme.mp3" preload="auto"></audio>
+        <audio id="earthGuardianAudio" src="assets/earth/earth-guardian-theme.mp3"></audio>
+        <audio id="waterGuardianAudio" src="assets/water/water-guardian-theme.mp3"></audio>
+        <audio id="fireGuardianAudio" src="assets/fire/fire-guardian-theme.mp3"></audio>
+        <audio id="airGuardianAudio" src="assets/air/air-guardian-theme.mp3"></audio>
+        <audio id="koppieAudio" src="assets/koppie/spirit-of-the-koppie-theme.mp3"></audio>
 
         <script>
             // Wait for the A-Frame scene to finish loading
@@ -180,6 +180,7 @@
                     waterRunestone.setAttribute("gltf-model", "assets/water/water-guardian.glb");
                     waterRunestone.setAttribute("scale", "3 3 3");
                     waterRunestone.setAttribute("animation-mixer", "");
+                    waterRunestone.setAttribute("rotation", "0 0 0");
 
                     // Hide the "Tap to Start" prompt
                     waterTapImage.setAttribute("visible", "false");
@@ -200,6 +201,7 @@
                     fireRunestone.setAttribute("gltf-model", "assets/fire/fire-guardian.glb");
                     fireRunestone.setAttribute("scale", "3 3 3");
                     fireRunestone.setAttribute("animation-mixer", "");
+                    fireRunestone.setAttribute("rotation", "0 0 0");
 
                     // Hide the "Tap to Start" prompt
                     fireTapImage.setAttribute("visible", "false");
@@ -220,6 +222,7 @@
                     airRunestone.setAttribute("gltf-model", "assets/air/air-guardian.glb");
                     airRunestone.setAttribute("scale", "3 3 3");
                     airRunestone.setAttribute("animation-mixer", "");
+                    airRunestone.setAttribute("rotation", "0 0 0");
 
                     // Hide the "Tap to Start" prompt
                     airTapImage.setAttribute("visible", "false");
