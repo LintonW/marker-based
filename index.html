@@ -16,12 +16,7 @@
     <body>
         <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
             <a-marker preset="hiro">
-                <a-entity
-                    id="mymodel"
-                    gltf-model="url(earth-runestone.glb)"
-                    rotation="-90 0 0"
-                    scale="1 1 1"
-                    class="clickable">
+                <a-entity id="mymodel" gltf-model="earth-runestone.glb" rotation="-90 0 0" scale="1 1 1" class="clickable">
                     <!-- "Tap to Start" prompt -->
                     <a-image
                         id="tapToStart"
