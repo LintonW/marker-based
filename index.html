@@ -83,13 +83,17 @@
         </a-scene>
 
         <!-- HTML audio element for the guardian's theme music -->
-        <audio id="guardianAudio" src="assets/earth-guardian-theme.mp3" preload="auto"></audio>
+        <audio id="earthGuardianAudio" src="assets/earth/earth-guardian-theme.mp3" preload="auto"></audio>
+        <audio id="waterGuardianAudio" src="assets/water/water-guardian-theme.mp3" preload="auto"></audio>
+        <audio id="fireGuardianAudio" src="assets/fire/fire-guardian-theme.mp3" preload="auto"></audio>
+        <audio id="airGuardianAudio" src="assets/air/air-guardian-theme.mp3" preload="auto"></audio>
+        <audio id="koppieAudio" src="assets/koppie/spirit-of-the-koppie-theme.mp3" preload="auto"></audio>
 
         <script>
             // Get references to the model, tap image, and audio elements
             const model = document.querySelector("#mymodel");
             const tapImage = model.querySelector("#tapToStart");
-            const sound = document.querySelector("#guardianAudio");
+            const sound = document.querySelector("#earthGuardianAudio");
 
             // Add a click event listener to the model
             model.addEventListener("click", (e) => {
